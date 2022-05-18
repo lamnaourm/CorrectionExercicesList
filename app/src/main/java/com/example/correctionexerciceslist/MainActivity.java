@@ -3,6 +3,8 @@ package com.example.correctionexerciceslist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -40,6 +42,25 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<String> ad = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,nomspays);
         sp.setAdapter(ad);
+
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+
+                Pays p = list_pays.get(pos);
+
+                im.setImageResource(p.getImage());
+                t1.setText("Capital : " + p.getCapital());
+                t2.setText("Continent : " + p.getContinent());
+                t3.setText("Population : " + p.getPopulation());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 }
